@@ -34,12 +34,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #c8cddf 0%, #9d96a4 100%);
+            background: linear-gradient(135deg, #f3ebeb 0%, #d8d2de 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+        }
+
+        .nameAkbar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .nameAkbar h2 {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .nameAkbar h2:first-child {
+            color: #667eea;
         }
 
         .container {
@@ -233,6 +256,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <div class="nameAkbar">
+        <h2>Nama : Muhammad Hasbih Akbar</h2>
+        <h2>NIM : 231220075</h2>
+    </div>
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -260,41 +287,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <?php if ($hasil !== null): ?>
-            <div class="result-section">
-                <h3>📊 Hasil Perhitungan</h3>
+                <div class="result-section">
+                    <h3>📊 Hasil Perhitungan</h3>
 
-                <div class="result-item">
-                    <span class="result-label">Nilai A</span>
-                    <span class="result-value"><?php echo $nilaiA; ?></span>
+                    <div class="result-item">
+                        <span class="result-label">Nilai A</span>
+                        <span class="result-value"><?php echo $nilaiA; ?></span>
+                    </div>
+
+                    <div class="result-item">
+                        <span class="result-label">Nilai B</span>
+                        <span class="result-value"><?php echo $nilaiB; ?></span>
+                    </div>
+
+                    <div class="result-item">
+                        <span class="result-label">FPB</span>
+                        <span class="result-value" style="color: #28a745; font-size: 24px;"><?php echo $hasil; ?></span>
+                    </div>
+
+                    <?php if ($isCoprime): ?>
+                        <span class="status-badge status-coprime">✓ <?php echo $nilaiA; ?> dan <?php echo $nilaiB; ?> adalah
+                            Bilangan Coprime</span>
+                    <?php else: ?>
+                        <span class="status-badge status-not-coprime">✕ <?php echo $nilaiA; ?> dan <?php echo $nilaiB; ?> bukan
+                            Bilangan Coprime</span>
+                    <?php endif; ?>
+
+                    <?php if (!empty($proses)): ?>
+                        <div class="proses-section">
+                            <h4>📝 Langkah-langkah Perhitungan:</h4>
+                            <?php foreach ($proses as $step): ?>
+                                <div class="proses-item"><?php echo $step; ?></div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-
-                <div class="result-item">
-                    <span class="result-label">Nilai B</span>
-                    <span class="result-value"><?php echo $nilaiB; ?></span>
-                </div>
-
-                <div class="result-item">
-                    <span class="result-label">FPB</span>
-                    <span class="result-value" style="color: #28a745; font-size: 24px;"><?php echo $hasil; ?></span>
-                </div>
-
-                <?php if ($isCoprime): ?>
-                <span
-                    class="status-badge status-coprime">✓ <?php echo $nilaiA; ?> dan <?php echo $nilaiB; ?> adalah Bilangan Coprime</span>
-                <?php else: ?>
-                <span
-                    class="status-badge status-not-coprime">✕ <?php echo $nilaiA; ?> dan <?php echo $nilaiB; ?> bukan Bilangan Coprime</span>
-                <?php endif; ?>
-
-                <?php if (!empty($proses)): ?>
-                <div class="proses-section">
-                    <h4>📝 Langkah-langkah Perhitungan:</h4>
-                    <?php foreach ($proses as $step): ?>
-                    <div class="proses-item"><?php echo $step; ?></div>
-                    <?php endforeach; ?>
-                </div>
-                <?php endif; ?>
-            </div>
             <?php endif; ?>
         </div>
     </div>
@@ -304,25 +331,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Clear form inputs
             document.getElementById('nilaiA').value = '';
             document.getElementById('nilaiB').value = '';
-            
+
             // Clear result section
             document.querySelector('.result-section').innerHTML = '';
-            
+
             // Clear proses section
             document.querySelector('.proses-section').innerHTML = '';
-            
+
             // Clear status badge
             document.querySelector('.status-badge').remove();
-            
+
             // Clear proses items
-            document.querySelectorAll('.proses-item').forEach(function(item) {
+            document.querySelectorAll('.proses-item').forEach(function (item) {
                 item.remove();
             });
             document.querySelector('.result-section').remove();
             // Clear hasil perhitungan
             $hasil = null;
 
-            
+
             // Reload page to clear results
             window.location.reload();
         }
