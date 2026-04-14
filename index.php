@@ -326,12 +326,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
         function resetForm() {
-            // Clear form inputs
-            document.getElementById('nilaiA').value = '';
-            document.getElementById('nilaiB').value = '';
-
-            // Reload page to clear results
-            window.location.reload();
+            // Redirect ke halaman yang sama tanpa POST data (seperti baru dibuka)
+            window.location.href = window.location.pathname;
         }
     </script>
 </body>
