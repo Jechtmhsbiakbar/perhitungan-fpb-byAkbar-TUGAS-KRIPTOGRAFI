@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             line-height: 1.5;
         }
 
-        .nameAkbar h2:first-child {
+        .nameAkbar h2:first-child { 
             color: #667eea;
         }
 
@@ -306,11 +306,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <?php if ($isCoprime): ?>
-                        <span class="status-badge status-coprime">✓ <?php echo $nilaiA; ?> dan <?php echo $nilaiB; ?> adalah
-                            Bilangan Coprime</span>
+                        <span class="status-badge status-coprime">✓ KEDUA ANGKA RELATIF PRIMA</span>
                     <?php else: ?>
-                        <span class="status-badge status-not-coprime">✕ <?php echo $nilaiA; ?> dan <?php echo $nilaiB; ?> bukan
-                            Bilangan Coprime</span>
+                        <span class="status-badge status-not-coprime">✕ TIDAK RELATIF PRIMA</span>
                     <?php endif; ?>
 
                     <?php if (!empty($proses)): ?>
@@ -331,24 +329,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Clear form inputs
             document.getElementById('nilaiA').value = '';
             document.getElementById('nilaiB').value = '';
-
-            // Clear result section
-            document.querySelector('.result-section').innerHTML = '';
-
-            // Clear proses section
-            document.querySelector('.proses-section').innerHTML = '';
-
-            // Clear status badge
-            document.querySelector('.status-badge').remove();
-
-            // Clear proses items
-            document.querySelectorAll('.proses-item').forEach(function (item) {
-                item.remove();
-            });
-            document.querySelector('.result-section').remove();
-            // Clear hasil perhitungan
-            $hasil = null;
-
 
             // Reload page to clear results
             window.location.reload();
