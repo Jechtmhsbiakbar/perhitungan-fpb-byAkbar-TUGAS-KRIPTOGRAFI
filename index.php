@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #c8cddf 0%, #9d96a4 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -255,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="button-group">
                     <button type="submit" class="btn-hitung">Hitung FPB</button>
-                    <button type="reset" class="btn-reset">Reset</button>
+                    <button type="button" class="btn-reset" onclick="resetForm()">Reset</button>
                 </div>
             </form>
 
@@ -298,6 +298,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
         </div>
     </div>
+
+    <script>
+        function resetForm() {
+            // Clear form inputs
+            document.getElementById('nilaiA').value = '';
+            document.getElementById('nilaiB').value = '';
+            
+            // Clear result section
+            document.querySelector('.result-section').innerHTML = '';
+            
+            // Clear proses section
+            document.querySelector('.proses-section').innerHTML = '';
+            
+            // Clear status badge
+            document.querySelector('.status-badge').remove();
+            
+            // Clear proses items
+            document.querySelectorAll('.proses-item').forEach(function(item) {
+                item.remove();
+            });
+            document.querySelector('.result-section').remove();
+            // Clear hasil perhitungan
+            $hasil = null;
+
+            
+            // Reload page to clear results
+            window.location.reload();
+        }
+    </script>
 </body>
 
 </html>
